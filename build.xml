@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ModbusClient" default="jar" basedir=".">
+
+    <property name="src.dir"    location="src"/>
+    <property name="build.dir"  location="bin"/>
+    <property name="lib.dir"    location="lib"/>
+    <property name="main.class" value="com.commander4j.modbus.ModbusClientApp"/>
+    <property name="jar.file"   value="${basedir}/modbusClient.jar"/>
+
+    <!-- Compile / run classpath: the digitalpetri Modbus stack and its dependencies.
+         EasyModbusJavaClient.jar is deliberately excluded - this project uses the
+         digitalpetri library only, and keeping the unused jar off the classpath
+         prevents accidental imports from the wrong Modbus library. -->
+    <path id="modbus.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+            <exclude name="EasyModbusJavaClient.jar"/>
+        </fileset>
+    </path>
+
+    <target name="clean" description="Delete generated files">
+        <delete dir="${build.dir}"/>
+        <delete file="${jar.file}"/>
+    </target>
+
+    <target name="compile" description="Compile the Java sources">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}"
+               includeantruntime="false" debug="true" release="25">
+            <classpath refid="modbus.classpath"/>
+        </javac>
+    </target>
+
+    <!-- Build an executable jar containing only this project's compiled classes. The
+         dependency jars are NOT bundled - instead a Class-Path manifest attribute points
+         at them in lib/. <manifestclasspath> computes each entry as a path relative to
+         the jar's own location (the project root), so the dependency jars resolve as
+         lib/*.jar regardless of the working directory `java -jar` is launched from. -->
+    <target name="jar" depends="compile" description="Build an executable jar that references lib/ via the manifest">
+        <manifestclasspath property="manifest.classpath" jarfile="${jar.file}">
+            <classpath refid="modbus.classpath"/>
+        </manifestclasspath>
+        <jar destfile="${jar.file}">
+            <fileset dir="${build.dir}"/>
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+                <attribute name="Class-Path" value="${manifest.classpath}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="compile" description="Run the client from compiled classes">
+        <java classname="${main.class}" fork="true">
+            <classpath>
+                <pathelement location="${build.dir}"/>
+                <path refid="modbus.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+</project>
