@@ -11,8 +11,8 @@ public class Common
     public static String iconPath = "." + File.separator + "images" + File.separator + "appIcons" + File.separator;
 
     public static final String programName = "Commander4j Modbus Client";
-    public static final String version     = "1.20";
-    public static final String helpURL     = "https://wiki.commander4j.com/index.php?title=Modbus";
+    public static final String version     = "1.21";
+    public static final String helpURL     = "https://wiki.commander4j.com/index.php?title=ModbusClient";
 
     public static String buildTitle(String filename)
     {
@@ -35,6 +35,7 @@ public class Common
     public final static ImageIcon icon_erase         = new ImageIcon(iconPath + "erase_24x24.png");
     public final static ImageIcon icon_eraser        = new ImageIcon(iconPath + "eraser_24x24.png");
     public final static ImageIcon icon_save          = new ImageIcon(iconPath + "save_24x24.png");
+    public final static ImageIcon icon_open          = new ImageIcon(iconPath + "open_file_24x24.png");
     public final static ImageIcon icon_start         = new ImageIcon(iconPath + "bolt_24x24.png");
     public final static ImageIcon icon_stop          = new ImageIcon(iconPath + "ban_24x24.png");
     public final static ImageIcon icon_connected     = new ImageIcon(iconPath + "connected.png");
