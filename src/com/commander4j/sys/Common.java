@@ -11,7 +11,7 @@ public class Common
     public static String iconPath = "." + File.separator + "images" + File.separator + "appIcons" + File.separator;
 
     public static final String programName = "Commander4j Modbus Client";
-    public static final String version     = "1.21";
+    public static final String version     = "1.23";
     public static final String helpURL     = "https://wiki.commander4j.com/index.php?title=ModbusClient";
 
     public static String buildTitle(String filename)

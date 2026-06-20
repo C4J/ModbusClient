@@ -67,7 +67,7 @@ public class ClientFrame extends JFrame
 
 	private final JTextField hostField = new JTextField("127.0.0.1", 12);
 	private final JSpinner portSpinner = new JSpinner(new SpinnerNumberModel(502, 1, 65535, 1));
-	private final JSpinner unitSpinner = new JSpinner(new SpinnerNumberModel(1, 0, 247, 1));
+	private final JSpinner unitSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 247, 1));
 	private final JToggleButton4j connectToggle = new JToggleButton4j(Common.icon_disconnected);
 	private final JLabel4j_std statusLabel = new JLabel4j_std("Disconnected");
 
@@ -76,7 +76,7 @@ public class ClientFrame extends JFrame
 
 	private final UnifiedRegisterPanel registerPanel;
 
-	private ClientConfig baseline = new ClientConfig("127.0.0.1", 502, 1);
+	private ClientConfig baseline = new ClientConfig("127.0.0.1", 502, 0);
 	private File currentConfigFile = ConfigStore.DEFAULT_FILE;
 	private boolean loading = false;
 	private boolean dirty = false;

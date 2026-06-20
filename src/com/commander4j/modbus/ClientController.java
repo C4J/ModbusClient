@@ -38,7 +38,7 @@ import com.digitalpetri.modbus.tcp.client.NettyTcpClientTransport;
 public class ClientController
 {
 
-	private volatile int unitId = 1;
+	private volatile int unitId = 0;
 	private volatile int responseTimeoutMs = 2000;
 
 	private ModbusTcpClient client; // guarded by this

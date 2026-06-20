@@ -1,9 +1,9 @@
 @echo off
 cd /d "%~dp0"
 
-rem -Dio.netty.noUnsafe=true keeps Netty off sun.misc.Unsafe, so the JDK does not
-rem print its "terminally deprecated Unsafe" warning. The safe fallback path is
-rem more than fast enough for Modbus traffic.
-java -Dio.netty.noUnsafe=true -jar modbusClient.jar
+rem Netty 4.2.x uses the Foreign Function & Memory API instead of sun.misc.Unsafe, so on
+rem JDK 24+ it runs without the terminal-deprecation Unsafe warning - no flag needed
+rem (4.1.x required -Dio.netty.noUnsafe=true).
+java -jar modbusClient.jar
 
 exit
